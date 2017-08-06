@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+    {% for post in post_list %}
+
+        <h3><a href="{% url 'detail' id=post.id %}">{{ post.title }}</a></h3>
+        <!--<a href="{% url 'detail' id=post.id %}"><figure><img src="{% static 'images/img_1.jpg'%}" alt=post.title></figure></a>-->
+
+        <p> {{ post.content|truncatewords_html:20 }}</p>
+        <a title=post.title href="{% url 'detail' id=post.id %}" class="readmore">阅读全文&gt;&gt;</a>
+
+        <p class="dateview"><span>{{post.date_time}}</span><span></span><span>分类：[<a href="{% url 'search_tag' tag=post.category %}">{{ post.category }}</a>]</span></p>
+
+    {% endfor %}
+    {% if post_list.object_list and post_list.paginator.num_pages > 1 %}
+
+
+        <ul class="pager">
+            {% if post_list.has_previous %}
+                <li><a href="?page={{ post_list.previous_page_number }}">Pre Page</a></li>
+            {% endif %}
+            {% if post_list.has_next %}
+                <li><a href="?page={{ post_list.next_page_number }}">Next Page</a></li>
+            {% endif %}
+        </ul>
+
+    {% endif %}
+<!-- /.blog-post -->
+{% endblock %}
+
+
+{% block fenlei %}
+{% if tag_count%}
+<ul>
+   {% for tag,count in tag_count.items%}
+
+      <li>
+        <p>&nbsp&nbsp<a class="post-categorys post-category-count" href="{% url 'search_tag' tag=tag %}">{{ tag }}({{count}})</a></p>
+      </li>
+
+   {% endfor %}
+{% endif %}
+</ul>
+{% endblock %}
+
+{% block cundang %}
+       {% if time_count%}
+        <ul>
+           {% for value in time_count%}
+
+              <li>
+                <p>&nbsp&nbsp<a class="post-categorys post-category-count" href="{% url 'search_time' t_time=value.0 %}">{{value.0}}({{value.1}})</a></p>
+              </li>
+
+           {% endfor %}
+       {% endif %}
+        </ul>
+{% endblock %}
