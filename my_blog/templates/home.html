@@ -4,9 +4,7 @@
     {% for post in post_list %}
 
         <h3><a href="{% url 'detail' id=post.id %}">{{ post.title }}</a></h3>
-        <!--<a href="{% url 'detail' id=post.id %}"><figure><img src="{% static 'images/img_1.jpg'%}" alt=post.title></figure></a>-->
-
-        <p> {{ post.content|truncatewords_html:20 }}</p>
+        <p> {{ post.content|truncatewords_html:20|safe}}</p>
         <a title=post.title href="{% url 'detail' id=post.id %}" class="readmore">阅读全文&gt;&gt;</a>
 
         <p class="dateview"><span>{{post.date_time}}</span><span></span><span>分类：[<a href="{% url 'search_tag' tag=post.category %}">{{ post.category }}</a>]</span></p>
@@ -35,7 +33,7 @@
    {% for tag,count in tag_count.items%}
 
       <li>
-        <p>&nbsp&nbsp<a class="post-categorys post-category-count" href="{% url 'search_tag' tag=tag %}">{{ tag }}({{count}})</a></p>
+        <p>&nbsp<a class="post-categorys post-category-count" href="{% url 'search_tag' tag=tag %}">{{ tag }}({{count}})</a></p>
       </li>
 
    {% endfor %}
@@ -49,7 +47,7 @@
            {% for value in time_count%}
 
               <li>
-                <p>&nbsp&nbsp<a class="post-categorys post-category-count" href="{% url 'search_time' t_time=value.0 %}">{{value.0}}({{value.1}})</a></p>
+                <p>&nbsp<a class="post-categorys post-category-count" href="{% url 'search_time' t_time=value.0 %}">{{value.0}}({{value.1}})</a></p>
               </li>
 
            {% endfor %}

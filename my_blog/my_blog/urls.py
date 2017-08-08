@@ -22,9 +22,9 @@ urlpatterns = [
     url(r'^$', views.home, name = 'home'),
     url(r'^article/(?P<id>\d+)/$', views.detail, name='detail'),
     url(r'^archives/$', views.archives, name='archives'),
-    url(r'^tag/(?P<tag>\w+)/$', views.search_tag, name = 'search_tag'),
+    url(r'^tag/(?P<tag>\S+)/$', views.search_tag, name = 'search_tag'),
     url(r'^time/(?P<t_time>\d+)/$', views.search_time, name='search_time'),
     url(r'^feed/$', RSSFeed(), name = "RSS"),
     url(r'^search/$',views.blog_search, name = 'search'),
-    # url(r'^ckeditor/', include('ckeditor.urls')),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]

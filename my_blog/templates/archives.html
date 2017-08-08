@@ -33,7 +33,7 @@
    {% for tag,count in tag_count.items%}
 
       <li>
-        <p>&nbsp&nbsp<a class="post-categorys post-category-count" href="{% url 'search_tag' tag=tag %}">{{ tag }}({{count}})</a></p>
+        <p>&nbsp<a class="post-categorys post-category-count" href="{% url 'search_tag' tag=tag %}">{{ tag }}({{count}})</a></p>
       </li>
 
    {% endfor %}
@@ -47,7 +47,7 @@
            {% for value in time_count%}
 
               <li>
-                <p>&nbsp&nbsp<a class="post-categorys post-category-count" href="{% url 'search_time' t_time=value.0 %}">{{value.0}}({{value.1}})</a></p>
+                <p>&nbsp<a class="post-categorys post-category-count" href="{% url 'search_time' t_time=value.0 %}">{{value.0}}({{value.1}})</a></p>
               </li>
 
            {% endfor %}
