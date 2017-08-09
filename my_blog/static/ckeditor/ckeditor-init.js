@@ -1,4 +1,9 @@
-(function() {
+/* global CKEDITOR */
+;(function() {
+  var el = document.getElementById('ckeditor-init-script');
+  if (el && !window.CKEDITOR_BASEPATH) {
+    window.CKEDITOR_BASEPATH = el.getAttribute('data-ckeditor-basepath');
+  }
 
   // Polyfill from https://developer.mozilla.org/en/docs/Web/API/Element/matches
   if (!Element.prototype.matches) {
@@ -16,10 +21,16 @@
         };
   }
 
-  document.addEventListener('DOMContentLoaded', function() {
+  function runInitialisers() {
     initialiseCKEditor();
     initialiseCKEditorInInlinedForms();
-  });
+  }
+
+  if (document.readyState != 'loading') {
+    runInitialisers();
+  } else {
+    document.addEventListener('DOMContentLoaded', runInitialisers);
+  }
 
   function initialiseCKEditor() {
     var textareas = Array.prototype.slice.call(document.querySelectorAll('textarea[data-type=ckeditortype]'));
