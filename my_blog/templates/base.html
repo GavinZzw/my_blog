@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="gb2312">
+{% load staticfiles %}
+<title>聊此一生</title>
+<meta name="keywords" content="个人博客" />
+<meta name="description" content="个人博客" />
+<link href="{% static 'css/base.css'%}" rel="stylesheet">
+<link href="{% static 'css/index.css'%}" rel="stylesheet">
+<script src="{% static 'js/jquery-2.1.1.min.js'%}"></script>
+<script src="{% static 'js/calendar-3.1.js'%}"></script>
+<link rel="shortcut icon" href="{%static 'images/favicon.ico'%}" />
+<!--<link rel="stylesheet" href="http://www.qtdebug.com/css/style.css">-->
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--<link rel="stylesheet" href="http://labfile.oss.aliyuncs.com/courses/487/pure-min.css">-->
+<link rel="stylesheet" href="http://labfile.oss.aliyuncs.com/courses/487/grids-responsive-min.css">
+<link rel="stylesheet" href="http://labfile.oss.aliyuncs.com/courses/487/blog.css">
+<!--[if lt IE 9]>
+<script src="{% static 'js/modernizr.js'%}"></script>
+<![endif]-->
+<script type="text/javascript" src="{% static 'js/jquery.js'%}"></script>
+<style>
+#test {
+	width:300px;
+	height:auto;
+	overflow:hidden;
+	border:solid 1px;
+	margin-bottom:20px;
+}
+}
+</style>
+</head>
+<body>
+<!--<div class="topnav">-->
+<!--<a href="http://www.yangqq.com/download/div/2017-07-16/785.html" target="_blank">个人博客模板古典系列之——江南墨卷</a>——作品来自<a href="http://www.yangqq.com" target="_blank">杨青个人博客网站</a>-->
+<!--</div>-->
+<div id="wrapper">
+  <header>
+    <div class="headtop"></div>
+    <div class="contenttop">
+      <div class="logo f_l">我的博客</div>
+      <div class="search f_r">
+        <form action="/search/" method="get" name="searchform" id="searchform">
+          <input name="s" id="keyboard" class="input_text" placeholder="请输入关键字" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text">
+          <input name="show" value="title" type="hidden">
+          <input name="tempid" value="1" type="hidden">
+          <input name="tbname" value="news" type="hidden">
+          <input name="Submit" class="input_submit" value="搜索" type="submit">
+        </form>
+      </div>
+      <div class="blank"></div>
+      <nav>
+        <div  class="navigation">
+          <ul class="menu">
+            <li><a href="/">网站首页</a></li>
+            <li><a href="{% url 'archives' %}">归档</a></li>
+            <li><a href="{% url 'RSS' %}">RSS</a> </li>
+            <li><a href="/">关于我</a>
+            <li><a href="https://github.com/GavinZzw">GITHUB</a>
+          </ul>
+        </div>
+      </nav>
+      <SCRIPT type=text/javascript>
+	// Navigation Menu
+	$(function() {
+		$(".menu ul").css({display: "none"}); // Opera Fix
+		$(".menu li").hover(function(){
+			$(this).find('ul:first').css({visibility: "visible",display: "none"}).slideDown("normal");
+		},function(){
+			$(this).find('ul:first').css({visibility: "hidden"});
+		});
+	});
+</SCRIPT>
+    </div>
+  </header>
+  <div class="jztop"></div>
+  <div class="container">
+    <div class="bloglist f_l">
+
+    {% block content %}
+    {% endblock %}
+    </div>
+
+    <div class="r_box f_r">
+      <!--<div class="tit01">-->
+        <!--<h3 class="tit">文章分类</h3>-->
+        <!--<div class="gzwm">-->
+          <!--<ul>-->
+            <!--<li><a class="email" href="#" target="_blank">我的电话</a></li>-->
+            <!--<li><a class="qq" href="#mailto:admin@admin.com" target="_blank">我的邮箱</a></li>-->
+            <!--<li><a class="tel" href="#" target="_blank">我的QQ</a></li>-->
+            <!--<li><a class="prize" href="#">个人奖项</a></li>-->
+          <!--</ul>-->
+        <!--</div>-->
+      <!--</div>-->
+      <script type="text/javascript">
+      $(document).ready(function(e) {
+          //在id=test的DIV中显示日历
+          calendar_init($("#test"));
+
+      });
+      </script>
+      <!--tit01 end-->
+      <div id="test">
+      </div>
+      <div class="tuwen">
+        <h3 class="tit">文章分类</h3>
+        {% block fenlei %}
+        {% endblock %}
+       </div>
+      <div class="tuwen">
+        <h3 class="tit">文章存档</h3>
+
+        {% block cundang %}
+        {% endblock %}
+      </div>
+      <div class="ad"> <img src="{% static 'images/03.jpg'%}"> </div>
+    </div>
+  </div>
+  <!-- container代码 结束 -->
+  <div class="jzend"></div>
+  <footer>
+    <div class="footer">
+      <div class="f_l">
+        <!--<p>All Rights Reserved 版权所有：<a href="http://www.yangqq.com">杨青个人博客</a> 备案号：蜀ICP备00000000号</p>-->
+      </div>
+      <div class="f_r textr">
+        <p>Design by DanceSmile</p>
+      </div>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

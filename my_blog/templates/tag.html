@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+ 
+<div class="posts">
+    {% for post in post_list %}
+ 
+        <section class="post">
+            <header class="post-header">
+                        <h3><a href="{% url 'detail' id=post.id %}">{{ post.title }}</a></h3>
+
+                        Time:  <a href="#">{{ post.date_time |date:"Y M d"}}</a> <a class="post-category post-category-js" href="{% url 'search_tag' tag=post.category %}">{{ post.category|title }}</a>
+            </header>
+
+            <div class="post-description">
+                {{ post.content|truncatewords_html:20|safe }}
+
+            </div>
+                <a class="pure-button" href="{% url 'detail' id=post.id %}">Read More >>> </a>
+        </section>
+ 
+    {% endfor %}
+</div>
+ 
+<!-- /.blog-post -->
+{% endblock %}
+
+{% block fenlei %}
+{% if tag_count%}
+<ul>
+   {% for tag,count in tag_count.items%}
+
+      <li>
+        <p>&nbsp<a class="post-categorys post-category-count" href="{% url 'search_tag' tag=tag %}">{{ tag }}({{count}})</a></p>
+      </li>
+
+   {% endfor %}
+{% endif %}
+</ul>
+{% endblock %}
+
+{% block cundang %}
+       {% if time_count%}
+        <ul>
+           {% for value in time_count%}
+
+              <li>
+                <p>&nbsp<a class="post-categorys post-category-count" href="{% url 'search_time' t_time=value.0 %}">{{value.0}}({{value.1}})</a></p>
+              </li>
+
+           {% endfor %}
+       {% endif %}
+        </ul>
+{% endblock %}
