@@ -27,5 +27,4 @@ urlpatterns = [
     url(r'^feed/$', RSSFeed(), name = "RSS"),
     url(r'^search/$',views.blog_search, name = 'search'),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
-    
 ]
